@@ -1,0 +1,52 @@
+<%- include('../_layouts/adminheader') -%>
+<h2 class="page-title mt-4">Add Product</h2>
+<form method="POST" class="mt-4" action="/admin/product/edit-product/<%= data._id  %>" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="title">Enter Product name</label>
+    <input type="text" class="form-control" value="<%= data.title %>" placeholder="Enter Product Name" id="pname" name="pname">
+  </div>
+
+  <div class="form-group">
+    <label for="title">Enter Product Desc</label>
+    <textarea name="pdesc" class="form-control"><%= data.desc %></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="title">Select Product Category</label>
+    <select name="pcat" class="form-control" id="pcat" required>
+      <option value="" selected disabled>Select Category</option>
+      <% category.forEach(function(d){ %>
+      <option value="<%= d._id %>" <% if(d._id == data.category){ %> selected <% } %> ><%= d.category %></option>
+      <% }) %>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="title">Enter Product Price</label>
+    <input type="number" value="<%= data.price %>" class="form-control" placeholder="Enter category" id="pprice" name="pprice">
+  </div>
+
+  <div class="form-group">
+    <label for="title">Enter Product Image</label>
+    <input type="file" class="form-control" onchange="readurl(this)" placeholder="Enter category" id="pimg" name="pimg">
+    <img  src="/product_img/<%= data.image %>" id="imgpreview" class="imgpreview" alt="">
+  </div>
+  <input type="hidden" name="oldpic" value="<%= data.image %>">
+  <div class="">
+  </div>
+  <button type="submit" class="btn btn-primary">Add Product</button>
+</form>
+
+<script>
+function readurl(input){
+  if(input.files && input.files[0]){
+    var reader = new FileReader();
+    reader.onload = function(e){
+      imgpreview.src = e.target.result;
+    }
+    reader.readAsDataURL(input.files[0])
+  }
+}
+</script>
+
+<%- include('../_layouts/adminfooter') -%>

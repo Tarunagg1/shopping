@@ -1,0 +1,11 @@
+img.pimg{
+    width: 200px;
+}
+a.pa{
+    display: inline-block;
+    margin:10px;
+}
+.row.product{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,29 @@
+<%- include('../_layouts/adminheader') -%>
+
+<h2 class="page-title mt-4">View All Category</h2>
+<table class="table mt-5">
+    <thead>
+      <tr class="name">
+        <th scope="col">Sno</th>
+        <th scope="col">Category Name</th>
+        <th scope="col">Slug</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% sno=0
+        data.forEach(function(d){ 
+            sno++ %>
+            <tr>
+              <td><%= sno %></td>
+              <td><%= d.category %></td>
+              <td><%= d.slug %></td>
+              <td> <a href="/admin/category/edit-cat/<%= d._id %>">Edit</a> </td>
+              <td> <a href="/admin/category/delete-cat/<%= d._id %>">Delete</a> </td>
+            </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+<%- include('../_layouts/adminfooter') -%>

@@ -1,0 +1,46 @@
+<%- include('../_layouts/adminheader') -%>
+
+<h2 class="page-title mt-4">View All Product</h2>
+<table class="table mt-5">
+    <thead>
+      <tr class="name">
+        <th scope="col">Sno</th>
+        <th scope="col">Product name</th>
+        <th scope="col">Product Desc</th>
+        <th scope="col">Category</th>
+        <th scope="col">Price</th>
+        <th scope="col">Product image</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>        
+      </tr>
+    </thead>
+    <tbody>
+
+        <% 
+        sno=0
+        data.forEach(function(res){ 
+            sno++  %>
+       <tr>
+            <td><%= sno %></td>
+            <td><%= res.title %></td>
+            <td><%= res.desc %></td>
+            <td><%= res.category %></td>
+            <td><%= res.price %></td>
+            <% if(res.image != ""){ %>
+                <td> <img class="image" src="/product_img/<%= res.image %>" alt="Not FOund"> </td>
+              <% } else {%>
+                <td>Image Not avilable</td>
+            <%}%>
+            <td> <a href="/admin/product/edit-product/<%= res._id %>">Edit</a> </td>
+            <td> <a href="/admin/product/delete-product/<%= res._id %>">Delete</a> </td>
+       </tr>
+       <% }) %>
+    </tbody>
+  </table>
+  
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $("tbody").sortable();
+</script>
+<%- include('../_layouts/adminfooter') -%>

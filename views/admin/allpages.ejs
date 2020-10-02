@@ -1,0 +1,36 @@
+<%- include('../_layouts/adminheader') -%>
+
+<h2 class="page-title mt-4">View All Pages</h2>
+<table class="table mt-5">
+    <thead>
+      <tr class="name">
+        <th scope="col">Sno</th>
+        <th scope="col">Title</th>
+        <th scope="col">Slug</th>
+        <th scope="col">Content</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% sno=0
+        data.forEach(function(d){ 
+            sno++ %>
+      <tr id="id_<%= d._id %>" class="<%= d.slug %>">
+        <td><%= sno %></td>
+        <td><%= d.title %></td>
+        <td> <a href="/admin/pages/edit-pages/<%= d.slug %>">Edit</a> </td>
+        <% if(d.slug == "home"){ %>
+            <td></td>
+        <%} else {%>
+            <td> <a href="/admin/pages/delete-pages/<%= d.slug %>">Delete</a> </td>
+        <% } %>
+      </tr> 
+      <% }) %>
+    </tbody>
+  </table>
+  
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $("tbody").sortable();
+</script>
+<%- include('../_layouts/adminfooter') -%>
